@@ -33,92 +33,95 @@ class ReviewsPage extends StatelessWidget {
     return Positioned(
       bottom: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 10,
+        padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.01,
           horizontal: 20,
         ),
-        height: size.height * 0.54,
+        height: size.height * 0.56,
         width: size.width,
         // color: Colors.grey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: size.width * 0.4,
-              // color: Colors.black,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.chat_outlined,
-                    color: Color.fromRGBO(27, 27, 27, 1),
-                  ),
-                  Text(
-                    'Customer Ratings',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: Color.fromRGBO(0, 0, 0, 0.9),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: size.width * 0.4,
+                height: size.height * 0.05,
+                // color: Colors.black,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(
+                      Icons.chat_outlined,
+                      color: Color.fromRGBO(27, 27, 27, 1),
                     ),
-                  ),
-                ],
+                    Text(
+                      'Customer Ratings',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromRGBO(0, 0, 0, 0.9),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                width: double.infinity,
+                height: size.height * 0.47,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    RatingTile(
+                      rating: '4.5/5',
+                      remark: 'Very Good !',
+                      description:
+                          'Overall service is fine and nothing to complaint about their service, keep it up!...',
+                      size: size,
+                    ),
+                    const Divider(
+                      color: Color.fromRGBO(103, 99, 99, 0.5),
+                    ),
+                    RatingTile(
+                      rating: '3.7/5',
+                      remark: 'Best !',
+                      description:
+                          'One of the best hotel rooms booking applications',
+                      size: size,
+                    ),
+                    const Divider(
+                      color: Color.fromRGBO(103, 99, 99, 0.5),
+                    ),
+                    RatingTile(
+                      rating: '4.2/5',
+                      remark: 'Awesome !',
+                      description:
+                          'Must try this application to book rooms of their hotel, totally satisfied !!!!',
+                      size: size,
+                    ),
+                    const Divider(
+                      color: Color.fromRGBO(103, 99, 99, 0.5),
+                    ),
+                    RatingTile(
+                      rating: '4.2/5',
+                      remark: 'Excellent !',
+                      description:
+                          'Yes , this is excellent for booking rooms....',
+                      size: size,
+                    ),
+                  ],
+                ),
               ),
-              width: double.infinity,
-              height: size.height * 0.47,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  RatingTile(
-                    rating: '4.5/5',
-                    remark: 'Very Good !',
-                    description:
-                        'Overall service is fine and nothing to complaint about their service, keep it up!...',
-                    size: size,
-                  ),
-                  const Divider(
-                    color: Color.fromRGBO(103, 99, 99, 0.5),
-                  ),
-                  RatingTile(
-                    rating: '3.7/5',
-                    remark: 'Best !',
-                    description:
-                        'One of the best hotel rooms booking applications',
-                    size: size,
-                  ),
-                  const Divider(
-                    color: Color.fromRGBO(103, 99, 99, 0.5),
-                  ),
-                  RatingTile(
-                    rating: '4.2/5',
-                    remark: 'Awesome !',
-                    description:
-                        'Must try this application to book rooms of their hotel, totally satisfied !!!!',
-                    size: size,
-                  ),
-                  const Divider(
-                    color: Color.fromRGBO(103, 99, 99, 0.5),
-                  ),
-                  RatingTile(
-                    rating: '4.2/5',
-                    remark: 'Excellent !',
-                    description:
-                        'Yes , this is excellent for booking rooms....',
-                    size: size,
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
