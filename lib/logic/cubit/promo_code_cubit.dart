@@ -26,42 +26,23 @@ List<PromoCode> _promoCodes = [
   ),
 ];
 
-List<PromoCode> _oldPromoCodes = [
-  PromoCode(
-    code: 'VAC25',
-    description: 'Get 25% off on min booking of Rs.15000',
-    id: 1,
-  ),
-  PromoCode(
-    code: 'VAC10',
-    description: 'Get 10% off on min booking of Rs.10000',
-    id: 2,
-  ),
-  PromoCode(
-    code: 'VAC30',
-    description: 'Get 30% off on min booking of Rs.25000',
-    id: 3,
-  ),
-  PromoCode(
-    code: 'VAC5',
-    description: 'Get 5% off on min booking of Rs.5000',
-    id: 4,
-  ),
-];
-
-
 class PromoCodeCubit extends Cubit<PromoCodeState> {
-  PromoCodeCubit() : super(PromoCodeState(promocodes: _promoCodes));
-
+  PromoCodeCubit()
+      : super(PromoCodeState(
+          promocodes: _promoCodes,
+          oldPromocodesLength: _promoCodes.length,
+        ));
 
   void codesList() => emit(state);
   void usedCode({required PromoCode promoCode}) {
+    final previous = _promoCodes.length;
     _promoCodes.remove(
       _promoCodes.firstWhere((element) => element.id == promoCode.id),
     );
     emit(
       PromoCodeState(
         promocodes: _promoCodes,
+        oldPromocodesLength: previous,
       ),
     );
   }

@@ -33,8 +33,9 @@ class _PaymentPageState extends State<PaymentPage> {
       actions: [
         BlocBuilder<PromoCodeCubit, PromoCodeState>(
           builder: (context, state) {
-            //TODO: Solve issue here...
-            if (state.promocodes.length == 2) {
+            // print(state.oldPromocodesLength);
+            // print(state.promocodes.length);
+            if (state.promocodes.length != state.oldPromocodesLength) {
               return const Text(
                 'applied successfully',
                 style: TextStyle(

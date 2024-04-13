@@ -5,7 +5,11 @@ import '../../data/model/promo_code.dart';
 import '../../logic/cubit/promo_code_cubit.dart';
 
 class InnerCard2 extends StatefulWidget {
-  const InnerCard2({super.key, required this.height, required this.size,});
+  const InnerCard2({
+    super.key,
+    required this.height,
+    required this.size,
+  });
   final double height;
   final Size size;
 
@@ -20,7 +24,7 @@ class _InnerCard2State extends State<InnerCard2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height * 0.53,
+      height: widget.height * 0.5,
       width: double.infinity,
       padding: const EdgeInsets.only(
         bottom: 25,
@@ -46,53 +50,77 @@ class _InnerCard2State extends State<InnerCard2> {
                 child: SingleChildScrollView(
                   child: BlocBuilder<PromoCodeCubit, PromoCodeState>(
                     builder: (context, state) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: state.promocodes.map(
-                          (e) {
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isTapped = e.id;
-                                  // e.ontap = !e.ontap;
-                                  // e.ontap ? isTapped = e.id : isTapped = 0;
-                                  usedCode = e;
-                                });
-                                print('${e.code} is used');
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  bottom: widget.height * 0.02,
-                                ),
-                                padding:
-                                    EdgeInsets.only(right: widget.size.width * 0.08),
-                                width: double.infinity,
-                                height: widget.height * 0.05,
-                                decoration: BoxDecoration(
-                                  border: isTapped == e.id
-                                      ? Border.all(
+                      if (state.promocodes.isEmpty) {
+                        return SizedBox(
+                          width: double.infinity,
+                          height: widget.height * 0.3,
+                          child: const Center(
+                            child: Text(
+                              'Sorry, no promo code available at this time!!',
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: state.promocodes.map(
+                            (e) {
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    isTapped = e.id;
+                                    // e.ontap = !e.ontap;
+                                    // e.ontap ? isTapped = e.id : isTapped = 0;
+                                    usedCode = e;
+                                  });
+                                  // print('${e.code} is used');
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    bottom: widget.height * 0.02,
+                                  ),
+                                  padding: EdgeInsets.only(
+                                      right: widget.size.width * 0.08),
+                                  width: double.infinity,
+                                  height: widget.height * 0.05,
+                                  decoration: BoxDecoration(
+                                    border: isTapped == e.id
+                                        ? Border.all(
+                                            color: const Color.fromRGBO(
+                                                59, 196, 89, 1))
+                                        : null,
+                                    color:
+                                        const Color.fromRGBO(227, 227, 227, 1),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        height: double.infinity,
+                                        width: widget.size.width * 0.25,
+                                        decoration: BoxDecoration(
                                           color: const Color.fromRGBO(
-                                              59, 196, 89, 1))
-                                      : null,
-                                  color: const Color.fromRGBO(227, 227, 227, 1),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.center,
-                                      height: double.infinity,
-                                      width: widget.size.width * 0.25,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromRGBO(
-                                            197, 197, 197, 1),
-                                        border: Border.all(color: Colors.black),
-                                        borderRadius: BorderRadius.circular(15),
+                                              197, 197, 197, 1),
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Text(
+                                          e.code,
+                                          style: const TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 8,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                       ),
-                                      child: Text(
-                                        e.code,
+                                      Text(
+                                        e.description,
                                         style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 8,
@@ -100,23 +128,14 @@ class _InnerCard2State extends State<InnerCard2> {
                                           color: Colors.black,
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      e.description,
-                                      style: const TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 8,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      );
+                              );
+                            },
+                          ).toList(),
+                        );
+                      }
                     },
                   ),
                 ),
@@ -134,8 +153,8 @@ class _InnerCard2State extends State<InnerCard2> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
               context.read<PromoCodeCubit>().usedCode(promoCode: usedCode);
+              Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
               elevation: 2,
