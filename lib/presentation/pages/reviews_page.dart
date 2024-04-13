@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/presentation/pages/payment_page.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../data/model/room.dart';
 import '../widgets/rating_tile.dart';
-import '../widgets/share_with.dart';
 
 class ReviewsPage extends StatelessWidget {
   static const routeName = '/reviewsPage';
@@ -188,12 +188,19 @@ class ReviewsPage extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () => showModalBottomSheet(
-                      context: context,
-                      builder: (context) => ShareWith(
-                        size: size,
-                      ),
-                    ),
+                    onPressed: () {
+                      //TODO: Implement link...
+                      Share.share(
+                        'I just booked a ${room.name} on the Hotel app, you also should try it too! (^_^)',
+                        subject: 'Hotel Booking',
+                      );
+                      // showModalBottomSheet(
+                      //   context: context,
+                      //   builder: (context) => ShareWith(
+                      //     size: size,
+                      //   ),
+                      // );
+                    },
                     icon: const Icon(
                       Icons.share_rounded,
                       color: Colors.white,

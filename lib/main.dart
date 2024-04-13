@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_app/logic/cubit/promo_code_cubit.dart';
 import 'package:hotel_app/presentation/pages/card_page.dart';
 import 'package:hotel_app/presentation/pages/home_page.dart';
+import 'package:hotel_app/presentation/pages/loading_page.dart';
 import 'package:hotel_app/presentation/pages/open_page.dart';
 import 'package:hotel_app/presentation/pages/options_page.dart';
 import 'package:hotel_app/presentation/pages/payment_page.dart';
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp> {
               value: _promoCodeCubit,
               child: const PromoPage(),
             ),
+        LoadingPage.routeName:(context) => const LoadingPage(),
       },
     );
   }

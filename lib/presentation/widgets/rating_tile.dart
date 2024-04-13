@@ -42,7 +42,9 @@ class RatingTile extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 10,),
+            const SizedBox(
+              width: 10,
+            ),
             Text(
               remark,
               style: const TextStyle(
