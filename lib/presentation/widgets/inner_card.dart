@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_app/presentation/pages/loading_page.dart';
+import 'package:hotel_app/presentation/widgets/payment_notification.dart';
 
 import '../../logic/cubit/card_cubit.dart';
 import '../pages/card_page.dart';
@@ -20,6 +21,7 @@ class InnerCard extends StatefulWidget {
 }
 
 class _InnerCardState extends State<InnerCard> {
+  final GlobalKey myWidgetKey = GlobalKey();
   final TextEditingController _cardNumController = TextEditingController();
   final TextEditingController _cvvController = TextEditingController();
   bool _cardNumVisible = true;
@@ -174,7 +176,7 @@ class _InnerCardState extends State<InnerCard> {
                             ),
                             //TODO: Work on edit card Details...
                             child: const Text(
-                              'Enter Card Details',
+                              'Tap to Enter Card Details',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w200,
@@ -323,7 +325,50 @@ class _InnerCardState extends State<InnerCard> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (_cardNumController.text != '') {
+                await Navigator.pushNamed(
+                  context,
+                  LoadingPage.routeName,
+                  arguments: false,
+                ).then(
+                  (value) {
+                    context.read<CardCubit>().clear();
+                    return showModalBottomSheet(
+                      context: context,
+                      builder: (context) => PaymentNotification(
+                        height: widget.height * 0.35,
+                        width: widget.size.width,
+                        cancelPayment: false,
+                      ),
+                    );
+                  },
+                ).then(
+                  (value) {
+                    try {
+                      if (value != null) {
+                        return Navigator.pushNamed(
+                          context,
+                          LoadingPage.routeName,
+                          arguments: true,
+                        ).then(
+                          (value) => showModalBottomSheet(
+                            context: context,
+                            builder: (context) => PaymentNotification(
+                              height: widget.height * 0.35,
+                              width: widget.size.width,
+                              cancelPayment: true,
+                            ),
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      rethrow;
+                    }
+                  },
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               elevation: 2,
               backgroundColor: Colors.black,
@@ -341,5 +386,11 @@ class _InnerCardState extends State<InnerCard> {
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    _cardNumController.dispose();
+    _cvvController.dispose();
+    super.dispose();
   }
 }

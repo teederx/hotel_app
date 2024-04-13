@@ -145,7 +145,7 @@ class _CardPageState extends State<CardPage> {
                                   );
                               Navigator.pop(context);
                             } else {
-                              print('invalid!');
+                              throw ('invalid!');
                             }
                           },
                         ),

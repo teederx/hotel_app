@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../logic/cubit/card_cubit.dart';
 import '../../logic/cubit/promo_code_cubit.dart';
 import '../widgets/inner_card.dart';
 import '../widgets/payment_conditions.dart';
@@ -19,7 +20,10 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     var appBar2 = AppBar(
       leading: IconButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () {
+          Navigator.pop(context);
+          context.read<CardCubit>().clear();
+        },
         icon: const Icon(Icons.arrow_back_ios_new_rounded),
       ),
       backgroundColor: Colors.transparent,
