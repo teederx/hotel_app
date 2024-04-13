@@ -30,6 +30,9 @@ class _InnerCardState extends State<InnerCard> {
     return Container(
       height: widget.height * 0.53,
       width: double.infinity,
+      margin: EdgeInsets.symmetric(
+        vertical: widget.height * 0.01,
+      ),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -230,7 +233,7 @@ class _InnerCardState extends State<InnerCard> {
                 ),
                 const TextField(
                   showCursor: false,
-                  keyboardType: TextInputType.none,
+                  // keyboardType: TextInputType.none,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(

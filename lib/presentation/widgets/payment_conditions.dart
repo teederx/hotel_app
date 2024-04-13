@@ -22,11 +22,11 @@ class PaymentConditions extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(
           top: height * 0.15,
-          bottom: height * 0.03,
+          bottom: height * 0.02,
           left: 15,
           right: 15,
         ),
-        height: height * 0.88,
+        height: height * 0.9,
         width: size.width,
         // color: Colors.black,
         child: Column(
