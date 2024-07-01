@@ -35,14 +35,36 @@ dependencies:
   flutter_bloc: ^8.1.5
   flutter_credit_card: ^4.0.1
   flutter_credit_card_new: ^0.0.4
+  flutter_native_splash: ^2.4.0
+  flutter_spinkit: ^5.2.1
   flutter_svg: ^2.0.10+1
   provider: ^6.1.2
-  flutter_spinkit: ^5.2.1
+  share_plus: ^9.0.0
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+
+# flutter_native_splash
+flutter_native_splash:
+  # color: "#ffffff"
+  image: "assets/images/logo2.png"
+  # branding: assets/branding-development.png
+  # color_dark: "#121212"
+  image_dark: "assets/images/logo2.png"
+  # branding_dark: assets/branding-development.png
+  background_image: "assets/images/open.png"
+  background_image_dark: "assets/images/open.png"
+  
+
+  android_12:
+    image: "assets/images/logo2.png"
+    # icon_background_color: "#ffffff"
+    image_dark: "assets/images/logo2.png"
+    # icon_background_color_dark: "#121212"
+
+  web: false
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

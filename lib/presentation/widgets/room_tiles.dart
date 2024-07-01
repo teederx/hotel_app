@@ -28,7 +28,7 @@ class RoomTiles extends StatelessWidget {
         );
       },
       child: Card(
-        elevation: 20,
+        elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
