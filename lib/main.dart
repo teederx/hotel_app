@@ -4,7 +4,6 @@ import 'package:hotel_app/logic/cubit/promo_code_cubit.dart';
 import 'package:hotel_app/presentation/pages/card_page.dart';
 import 'package:hotel_app/presentation/pages/home_page.dart';
 import 'package:hotel_app/presentation/pages/loading_page.dart';
-import 'package:hotel_app/presentation/pages/open_page.dart';
 import 'package:hotel_app/presentation/pages/options_page.dart';
 import 'package:hotel_app/presentation/pages/payment_page.dart';
 import 'package:hotel_app/presentation/pages/promo_page.dart';
@@ -37,9 +36,8 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Jost',
         useMaterial3: true,
       ),
-      initialRoute: OpenPage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
-        OpenPage.routeName: (context) => const OpenPage(),
         HomePage.routeName: (context) => const HomePage(),
         OptionsPage.routeName: (context) => const OptionsPage(),
         ReviewsPage.routeName: (context) => const ReviewsPage(),
